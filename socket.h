@@ -5,20 +5,25 @@
 
 class Socket {
 protected:
-    int sock;
-    sockaddr_in myAddr;
-    int myPort;
+    sockaddr_in myAddr;  
+	sockaddr_in peerAddr;  
+	char * myAddress;
+	char * peerAddress;
+	int myPort;
+	int peerPort;
+    char message[1000];
 
 public:
 
     Socket();
 
     bool initializeServer(char *_myAddr, int _myPort);
+
     bool initializeClient(char *_peerAddr, int _peerPort);
 
-    int writeToSocket(char *message, sockaddr_in peerAddr);
+    int writeToSocket(char *message);
 
-    int readFromSocketWithBlock(char *message, size_t message_size, sockaddr_in &peerAddr);
+    int readFromSocket(char *message);
 
     int getMyPort();
 
